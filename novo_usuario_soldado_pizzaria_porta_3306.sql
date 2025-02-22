@@ -136,6 +136,7 @@ ORDER BY quantidade_solicitada DESC
 LIMIT 1;
 
 --  Criar uma procedure que atualize a quantidade em estoque de um item do cardápio.
+
 DELIMITER $$
 
 CREATE PROCEDURE AtualizarEstoqueItem(
@@ -158,6 +159,7 @@ END $$
 DELIMITER ;
 
 --  Criar uma trigger que subtraia a quantidade em estoque de um tem do cardápio quando for solicitado em um pedido.
+
 DELIMITER $$
 
 CREATE TRIGGER AtualizarEstoqueApósPedido
@@ -177,27 +179,3 @@ pizza_id int not null,
 nome_antigo varchar (255) not null,
 preco_antigo decimal (10,2) not null,
 data_alteracao timestamp default current_timestamp)
-
-
-DELIMITER ;
-
-CREATE USER 'luiz-maia'@'%' IDENTIFIED BY 'senai@123';
-
-GRANT SELECT, INSERT, update ON pizzaria .pizza to 'luiz-maia'@'%';
-
-SHOW GRANTS FOR 'luiz-maia'@'%';
-
-DELIMITER $$
-
-create trigger trg_before_update
-before update on pizza
-for each row
-begin
-	insert into au_pizza (pizza_id, nome, nome_antigo, preco_antigo)
-    values (old.id, old.nome, old.preco);
-END $$
-
-DELIMITER ;
-
-select * from pizza;
-select * from au_pizza;
