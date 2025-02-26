@@ -1,11 +1,11 @@
-import requests # pip install requests
-import mysql.connector # pip install mysql-connector-python
+import requests  # pip install requests
+import mysql.connector  # pip install mysql-connector-python
 
 # função para conectar o banco de dados
 def banco(sql):
     conexao = mysql.connector.connect(
         host='localhost',
-        database ='pizzaria',
+        database='pizzaria',
         user='root',
         password='senai@123'
     )
@@ -26,18 +26,15 @@ response = requests.get(url, headers=headers)
 
 # mostrar o retorno
 obj = response.json()
-lista = obj ['data']['menu']['menu'][1]['itens']
+lista = obj['data']['menu']['menu'][1]['itens']
 
 # loop para mostrar todos os itens
 i = 0
 while i < len(lista):
     titulo = lista[i]['title']
     descricao = lista[i]['description']
-    # print(f'{titulo} - {descricao}')
-    sql = f"INSERT INTO pizza(sabor, ingredientes) VALUES('{titulo}','{descricao}');"
+    preco = lista[i]['price']  
+    sql = f"INSERT INTO pizza(sabor, ingredientes, preco) VALUES('{titulo}', '{descricao}', {preco});"
     banco(sql)
     i = i + 1
 
-# instalar o request executar no cmd ou no shell dentro dessa pasta
-# pip install requests
-# pip install mysql-connector-python

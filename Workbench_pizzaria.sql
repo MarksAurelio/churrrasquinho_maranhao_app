@@ -124,3 +124,12 @@ GRANT select ON pizzaria .pizza to 'luiz-maia'@'%';
 SHOW GRANTS FOR 'luiz-maia'@'%';
 
 GRANT SELECT ON pizzaria.au_pizza to 'luiz-maia'@'%';
+
+select distinct * from pizza;
+
+DELETE FROM ingredientes
+WHERE preco = 0;
+
+alter table pizza
+add column preco int not null;
+
