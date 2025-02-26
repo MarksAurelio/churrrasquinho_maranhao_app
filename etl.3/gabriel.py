@@ -26,9 +26,13 @@ lista = response.json()
 # loop para mostrar todos os itens
 i = 0
 while i < len(lista):
-    id = lista[i]['id']
-    sigla = lista[i]['sigla']
-    nome = lista[i]['nome']  
-    sql = f"INSERT INTO estados(id, sigla, nome) VALUES({id}, '{sigla}', '{nome}');"
+    id_PRIMEIRO = lista[i]['id_PRIMEIRO']
+    nome_PRIMEIRO = lista[i]['nome_PRIMEIRO']
+    id_microrregiao = lista[i]['id_microrregiao']
+    nome_microrregiao = lista[i]['nome_microrregiao']
+    id_mesorregiao = lista[i]['id_mesorregiao']
+    nome_mesorregiao = lista[i]['nome_mesorregiao']
+
+    sql = f"INSERT INTO estados(id_PRIMEIRO, nome_PRIMEIRO, id_microrregiao, nome_microrregiao, id_mesorregiao, nome_mesorregiao) VALUES({id_PRIMEIRO}, '{nome_PRIMEIRO}', {id_microrregiao}, '{nome_microrregiao}', {id_mesorregiao}, '{nome_mesorregiao}');"
     banco(sql)
     i = i + 1
