@@ -28,8 +28,10 @@ i = 0
 while i < len(lista):
     id = lista[i]['id']
     sigla = lista[i]['sigla']
-    nome = lista[i]['nome'] 
-    id_regiao = lista[i]['regiao']['id']
-    sql = f"INSERT INTO estados(id, sigla, nome) VALUES({id}, '{sigla}', '{nome}', {id});"
+    nome = lista[i]['nome']
+    regiao_id = lista[i]['regiao']['id']
+    sql = f"INSERT INTO estados(id, sigla, nome, regiao_id) VALUES({id}, '{sigla}', '{nome}', {regiao_id});"
     banco(sql)
     i = i + 1
+
+    
